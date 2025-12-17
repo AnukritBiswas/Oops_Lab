@@ -1,3 +1,5 @@
+package Day_2;
+
 class EvenOddCount {
     public static void main(String[] args) {
         int even = 0, odd = 0;

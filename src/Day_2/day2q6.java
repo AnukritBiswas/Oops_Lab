@@ -1,3 +1,5 @@
+package Day_2;
+
 class Subtract {
     void subtract(int a, int b) {
         System.out.println("Result = " + (a - b));

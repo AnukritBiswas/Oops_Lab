@@ -1,3 +1,5 @@
+package Day_2;
+
 import java.util.Scanner;
 
 class Student {
@@ -26,7 +28,7 @@ class StudentDemo {
                 lowName = s[i].name;
             }
         }
-        System.out.println("\nStudent Details:");
+        System.out.println("\nDay_2.Student Details:");
         for (int i = 0; i < n; i++) {
             System.out.println(s[i].roll + " " + s[i].name + " " + s[i].cgpa);
         }

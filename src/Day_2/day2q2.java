@@ -1,3 +1,5 @@
+package Day_2;
+
 class ObjectCount {
     static int count = 0;
     ObjectCount() {
