@@ -24,11 +24,11 @@ class _3D extends _2D {
     }
 }
 
-class Main {
+class Plastic {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter dimensions:");
+        System.out.println("Enter dimensions(length,width,height):");
         double l = sc.nextDouble();
         double w = sc.nextDouble();
         double h = sc.nextDouble();
