@@ -2,7 +2,18 @@
   <dictionary name="project">
     <words>
       <w>aadhar</w>
+      <w>deptid</w>
+      <w>deptname</w>
       <w>disp</w>
+      <w>empid</w>
+      <w>ename</w>
+      <w>engg</w>
+      <w>getinput</w>
+      <w>kiitian</w>
+      <w>regn</w>
+      <w>regno</w>
+      <w>rollno</w>
+      <w>substaff</w>
     </words>
   </dictionary>
 </component>
