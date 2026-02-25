@@ -1,4 +1,4 @@
-package mypack;
+package Day_6.mypack;
 
 public class HelloWorld {
     public static void main(String[] args) {

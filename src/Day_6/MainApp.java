@@ -1,5 +1,7 @@
+package Day_6;
+
 import java.util.Scanner;
-import Marketing.sales;
+import Day_6.Marketing.sales;
 
 public class MainApp {
     public static void main(String[] args) {

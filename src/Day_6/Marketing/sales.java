@@ -1,6 +1,6 @@
-package Marketing;
+package Day_6.Marketing;
 
-import General.employee;
+import Day_6.General.employee;
 
 public class sales extends employee {
 

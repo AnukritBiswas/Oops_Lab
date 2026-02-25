@@ -1,4 +1,4 @@
-package General;
+package Day_6.General;
 
 public class employee {
     protected int empid;
