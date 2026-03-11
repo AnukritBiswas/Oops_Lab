@@ -4,101 +4,160 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-class StringGUI extends JFrame implements ActionListener {
+class MyFrame extends JFrame implements ActionListener {
 
-    JTextField t1 = new JTextField(25);
-    JTextField t2 = new JTextField(25);
+    JTextField t1, t2;
+    JButton caps, small, convert, words, letters, reverse, vowels, freq, begin, reset;
 
-    String b[]={"IN CAPS","IN SMALL","CONVERT CASE","WORDS","LETTERS",
-            "REVERSE","VOWELS","FREQUENCY","BEGIN CAPS","RESET"};
+    public MyFrame() {
 
-    JButton bt[]=new JButton[10];
+        setTitle("My Frame");
+        setSize(900,500);
+        setLayout(null);
 
-    public StringGUI(){
+        getContentPane().setBackground(new Color(230,150,150));
 
-        setTitle("String Operations");
-        setLayout(new BorderLayout());
+        JLabel l1 = new JLabel("Enter the string:");
+        l1.setBounds(120,100,120,25);
+        add(l1);
 
-        JPanel top=new JPanel(new GridLayout(2,2,5,5));
-        top.add(new JLabel("Enter the string:"));
-        top.add(t1);
-        top.add(new JLabel("Result:"));
-        top.add(t2);
+        t1 = new JTextField();
+        t1.setBounds(250,100,300,25);
+        add(t1);
 
-        add(top,BorderLayout.NORTH);
+        JLabel l2 = new JLabel("String in upper case:");
+        l2.setBounds(100,150,150,25);
+        add(l2);
 
-        JPanel mid=new JPanel(new GridLayout(2,5,10,10));
+        t2 = new JTextField();
+        t2.setBounds(250,150,300,25);
+        add(t2);
 
-        for(int i=0;i<10;i++){
-            bt[i]=new JButton(b[i]);
-            mid.add(bt[i]);
-            bt[i].addActionListener(this);
-        }
+        caps = new JButton("IN CAPS");
+        caps.setBounds(60,320,100,30);
 
-        add(mid,BorderLayout.CENTER);
+        small = new JButton("IN SMALL");
+        small.setBounds(200,320,120,30);
 
-        setSize(700,300);
+        convert = new JButton("CONVERT CASE");
+        convert.setBounds(360,320,150,30);
+
+        words = new JButton("WORDS");
+        words.setBounds(560,320,100,30);
+
+        letters = new JButton("LETTERS");
+        letters.setBounds(700,320,100,30);
+
+        reverse = new JButton("REVERSE");
+        reverse.setBounds(120,360,120,30);
+
+        vowels = new JButton("VOWELS");
+        vowels.setBounds(300,360,120,30);
+
+        freq = new JButton("FREQUENCY");
+        freq.setBounds(480,360,130,30);
+
+        begin = new JButton("BEGIN CAPS");
+        begin.setBounds(650,360,130,30);
+
+        reset = new JButton("RESET");
+        reset.setBounds(380,410,120,35);
+        reset.setBackground(Color.blue);
+        reset.setForeground(Color.white);
+
+        add(caps); add(small); add(convert); add(words); add(letters);
+        add(reverse); add(vowels); add(freq); add(begin); add(reset);
+
+        caps.addActionListener(this);
+        small.addActionListener(this);
+        convert.addActionListener(this);
+        words.addActionListener(this);
+        letters.addActionListener(this);
+        reverse.addActionListener(this);
+        vowels.addActionListener(this);
+        freq.addActionListener(this);
+        begin.addActionListener(this);
+        reset.addActionListener(this);
+
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
 
-        String s=t1.getText();
-        String r="";
+        String str = t1.getText();
 
-        if(e.getActionCommand().equals("IN CAPS"))
-            r=s.toUpperCase();
+        if(e.getSource()==caps)
+            t2.setText(str.toUpperCase());
 
-        if(e.getActionCommand().equals("IN SMALL"))
-            r=s.toLowerCase();
+        else if(e.getSource()==small)
+            t2.setText(str.toLowerCase());
 
-        if(e.getActionCommand().equals("CONVERT CASE")){
-            for(char c:s.toCharArray())
-                r+=Character.isUpperCase(c)?Character.toLowerCase(c):Character.toUpperCase(c);
+        else if(e.getSource()==convert) {
+            String result="";
+            for(char c: str.toCharArray()){
+                if(Character.isUpperCase(c))
+                    result+=Character.toLowerCase(c);
+                else
+                    result+=Character.toUpperCase(c);
+            }
+            t2.setText(result);
         }
 
-        if(e.getActionCommand().equals("WORDS"))
-            r="Words: "+s.trim().split("\\s+").length;
+        else if(e.getSource()==words) {
+            String[] w = str.trim().split("\\s+");
+            t2.setText("Total Words: "+w.length);
+        }
 
-        if(e.getActionCommand().equals("LETTERS"))
-            r="Letters: "+s.replace(" ","").length();
+        else if(e.getSource()==letters) {
+            int count=0;
+            for(char c: str.toCharArray())
+                if(Character.isLetter(c))
+                    count++;
+            t2.setText("Letters: "+count);
+        }
 
-        if(e.getActionCommand().equals("REVERSE"))
-            r=new StringBuilder(s).reverse().toString();
+        else if(e.getSource()==reverse) {
+            String rev="";
+            for(int i=str.length()-1;i>=0;i--)
+                rev+=str.charAt(i);
+            t2.setText(rev);
+        }
 
-        if(e.getActionCommand().equals("VOWELS")){
+        else if(e.getSource()==vowels) {
             int v=0;
-            for(char c:s.toLowerCase().toCharArray())
-                if("aeiou".indexOf(c)>=0) v++;
-            r="Vowels: "+v;
+            for(char c:str.toLowerCase().toCharArray())
+                if("aeiou".indexOf(c)!=-1)
+                    v++;
+            t2.setText("Vowels: "+v);
         }
 
-        if(e.getActionCommand().equals("FREQUENCY")){
-            if(s.length()==0) return;
-            char c=s.charAt(0);
+        else if(e.getSource()==freq) {
             int f=0;
-            for(char x:s.toCharArray())
-                if(x==c) f++;
-            r="Frequency of '"+c+"' = "+f;
+            if(str.length()>0){
+                char ch=str.charAt(0);
+                for(char c:str.toCharArray())
+                    if(c==ch)
+                        f++;
+                t2.setText("Frequency of '"+ch+"' = "+f);
+            }
         }
 
-        if(e.getActionCommand().equals("BEGIN CAPS")){
-            String w[]=s.split(" ");
-            for(String x:w)
-                r+=Character.toUpperCase(x.charAt(0))+x.substring(1).toLowerCase()+" ";
+        else if(e.getSource()==begin) {
+            String[] w=str.split(" ");
+            String res="";
+            for(String word:w)
+                res+=Character.toUpperCase(word.charAt(0))+word.substring(1)+" ";
+            t2.setText(res);
         }
 
-        if(e.getActionCommand().equals("RESET")){
+        else if(e.getSource()==reset) {
             t1.setText("");
             t2.setText("");
-            return;
         }
-
-        t2.setText(r);
     }
 
-    public static void main(String args[]){
-        new StringGUI();
+    public static void main(String[] args) {
+        new MyFrame();
     }
 }
